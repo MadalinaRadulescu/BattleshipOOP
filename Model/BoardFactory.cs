@@ -1,4 +1,4 @@
-namespace Battleship.View;
+namespace Battleship.Model;
 
 public class BoardFactory
 {
