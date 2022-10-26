@@ -2,21 +2,29 @@ namespace Battleship.Model;
 
 public class Ship
 {
-    public List<Square> ships;
+    public List<Square> Ships;
     private Type ShipType { get; set; }
     
+    
+    
 
-    public Ship(List<Square> ships, Type shipType)
+    public Ship()
     {
-        
+        Ships = new List<Square>();
+
     }
 
-    // public List<Square> CreateShip(int shipSize)
-    // {
-    //     for (int i = 0; i < shipSize; i++)
-    //     {
-    //     }
-    // }
+    public List<Square> CreateShip(int shipSize)
+    {
+        
+        for (int i = 0; i < shipSize; i++)
+        {
+            Square shipPart = new Square(Status.ship);
+            Ships.Add(shipPart);
+        }
+
+        return Ships;
+    }
 }
 
 public enum Type

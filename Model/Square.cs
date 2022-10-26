@@ -10,6 +10,11 @@ public class Square
         this.SquareStatus = squareStatus;
         this.Coordinates = coordinates;
     }
+    
+    public Square(Status squareStatus)
+    {
+        SquareStatus = squareStatus;
+    }
 
     public char GetCharacter(Status squareStatus)
     {
