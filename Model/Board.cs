@@ -4,8 +4,9 @@ namespace Battleship.Model;
 
 public class Board
 {
-    private Square[,] ocean { get; set; }
+    public Square[,] ocean { get; set; }
     private int size = 15;
+    
 
     public Board()
     {
@@ -19,10 +20,11 @@ public class Board
         }
     }
 
-    public bool isPlacementOK() => throw new NotImplementedException();
+    
 
     public override string ToString()
     {
+        
         StringBuilder sb = new StringBuilder();
         sb.Append("   1  2  3  4  5  6  7  8  9 10 11 12 13 14 15\n");
         for (int row = 0; row < 15; row++)
@@ -31,7 +33,8 @@ public class Board
             sb.Append("  ");
             for (int col = 0; col < 15; col++)
             {
-                sb.Append("~  ");
+                char character = ocean[row, col].GetCharacter(ocean[row, col].SquareStatus);
+                sb.Append($"{character}  ");
             }
 
             sb.Append("\n");

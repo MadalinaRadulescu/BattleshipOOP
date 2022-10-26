@@ -4,13 +4,13 @@ public class Ship
 {
     public List<Square> Ships;
     private Type ShipType { get; set; }
+    public int ShipSize; 
     
-    
-    
-
-    public Ship()
+    public Ship(int shipSize)
     {
+        ShipSize = shipSize;
         Ships = new List<Square>();
+        CreateShip(ShipSize);
 
     }
 
@@ -22,7 +22,7 @@ public class Ship
             Square shipPart = new Square(Status.ship);
             Ships.Add(shipPart);
         }
-
+        
         return Ships;
     }
 }

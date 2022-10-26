@@ -46,7 +46,7 @@ public static class Input
                 int row = char.ToUpper(coordinates[0]) - 65;
                 int col = char.ToUpper(coordinates[1]) - 49;
 
-                if (row >= 14 || col >= 14 || row == -1 || col == -1)
+                if (row > 14 || col > 14 || row == -1 || col == -1)
                 {
                     Display.PrintMessage("Out of bounds");
                     continue;
@@ -84,5 +84,22 @@ public static class Input
         }
 
         return shipsType;
+    }
+
+    public static int ChooseOption(string direction)
+    {
+        int option;
+        while (true)
+        {
+            string userOption = Console.ReadLine();
+            if (direction.Contains(userOption))
+            {
+                option = int.Parse(userOption);
+                break;
+            }
+            
+            Display.PrintMessage("Not a valid option!");
+        }
+        return option;
     }
 }

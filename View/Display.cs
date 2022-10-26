@@ -1,3 +1,6 @@
+
+using Battleship.Model;
+
 namespace Battleship.View
 {
     public static class Display
@@ -6,8 +9,11 @@ namespace Battleship.View
         {
             Console.WriteLine(message);
         }
-        
-        // public static
+        public static void PrintBoard(Board playerBoard)
+        {
+            Console.WriteLine(playerBoard.ToString());
+        }
     } 
+    
+    
 }
-
