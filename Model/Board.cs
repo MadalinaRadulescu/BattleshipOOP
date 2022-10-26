@@ -24,14 +24,14 @@ public class Board
     public override string ToString()
     {
         StringBuilder sb = new StringBuilder();
-        sb.Append("  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15\n");
+        sb.Append("   1  2  3  4  5  6  7  8  9 10 11 12 13 14 15\n");
         for (int row = 0; row < 15; row++)
         {
             sb.Append((char)(row + 65));
-            sb.Append(" ");
+            sb.Append("  ");
             for (int col = 0; col < 15; col++)
             {
-                sb.Append("~ ");
+                sb.Append("~  ");
             }
 
             sb.Append("\n");

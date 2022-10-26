@@ -3,12 +3,12 @@ namespace Battleship.View;
 
 public static class Input
 {
-    public static void GetUserName()
+    public static string? GetUserName()
     {
-        Console.ReadLine();
+        return Console.ReadLine();
     }
 
-    public static int GetValidInput()
+    public static int GetValidShipNumber()
     {
         while (true)
         {
@@ -72,5 +72,17 @@ public static class Input
                 Display.PrintMessage("Not valid coordinates");
             }
         }
+    }
+
+    public static int[] GetShipsType(int shipNumber)
+    {
+        int[] shipsType = new int[shipNumber];
+        for (int i = 0; i < shipNumber; i++)
+        {
+            int userChoice = GetValidShipNumber();
+            shipsType[i] = userChoice;
+        }
+
+        return shipsType;
     }
 }
