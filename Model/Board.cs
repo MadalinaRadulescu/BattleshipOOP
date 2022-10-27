@@ -52,7 +52,8 @@ public class Board
             sb.Append("  ");
             for (int col = 0; col < 15; col++)
             {
-                char character = player1Board.ocean[row, col].GetCharacter(ocean[row, col].SquareStatus);
+                Status squareStatus = player1Board.ocean[row, col].SquareStatus;
+                char character = player1Board.ocean[row, col].GetCharacter(squareStatus);
                 sb.Append($"{character}  ");
             }
 
@@ -61,7 +62,8 @@ public class Board
             sb.Append("  ");
             for (int col = 0; col < 15; col++)
             {
-                char character = player2Board.ocean[row, col].GetCharacter(ocean[row, col].SquareStatus);
+                Status squareStatus = player2Board.ocean[row, col].SquareStatus;
+                char character = player2Board.ocean[row, col].GetCharacter(squareStatus);
                 sb.Append($"{character}  ");
             }
 

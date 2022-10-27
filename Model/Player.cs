@@ -1,3 +1,7 @@
+using System.Data;
+using Battleship.View;
+
+
 namespace Battleship.Model;
 
 public class Player
@@ -5,7 +9,7 @@ public class Player
     public List<Ship> playerShips;
     public Board playerBoard;
     public Board playerGuessBoard;
-    public bool IsAlive;
+    // public bool IsAlive;
     public string name;
     
     public Player()
@@ -25,5 +29,49 @@ public class Player
         }
 
         return playerShips;
+    }
+    
+    public void Shoot(Board playerBoard, Board guessBoard)
+    {
+        while (true)
+        {
+            Display.PrintMessage("Enter coordinates to shoot at");
+            (int x, int y) coordinates = Input.GetValidCoordinates();
+            if (playerBoard.ocean[coordinates.x, coordinates.y].SquareStatus == Status.ship)
+            {
+                playerBoard.ocean[coordinates.x, coordinates.y].SquareStatus = Status.hit;
+                guessBoard.ocean[coordinates.x, coordinates.y].SquareStatus = Status.hit;
+                break;
+            }
+            else if (playerBoard.ocean[coordinates.x, coordinates.y].SquareStatus == Status.empty)
+            {
+                playerBoard.ocean[coordinates.x, coordinates.y].SquareStatus = Status.miss;
+                guessBoard.ocean[coordinates.x, coordinates.y].SquareStatus = Status.miss;
+                break;
+            }
+            else
+            {
+                Display.PrintMessage("You already took a shot there, try again!");
+            }
+        }
+    }
+
+    public bool IsAlive(Board playerBoard)
+    {
+        bool isAlive = true;
+        for (int row = 0; row < 15; row++)
+        {
+            for (int col = 0; col < 15; col++)
+            {
+                if (playerBoard.ocean[row, col].SquareStatus == Status.ship)
+                {
+                    isAlive = false;
+                    break;
+                }
+            }
+
+        }
+
+        return isAlive;
     }
 }

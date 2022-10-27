@@ -28,7 +28,7 @@ public class Square
                 uniCharacter =  '#';
                 break;
             case Status.miss:
-                uniCharacter =  'o';
+                uniCharacter =  'M';
                 break;
             case Status.empty:
                 uniCharacter =  '~';

@@ -13,39 +13,51 @@ public static class BoardFactory
         foreach (var ship in playerShips)
         {
             Display.PrintMessage("Where would you like to place your ship: \n");
-            (int row, int col) userCoordinates = Input.GetValidCoordinates();
-            string validDirection = ValidateShipDirection(playerBoard, ship, userCoordinates);
-            Display.PrintMessage(validDirection);
-            int userOption = Input.ChooseOption(validDirection);
-            switch (userOption)
+            while (true)
             {
-                case 1:
-                    for (int i = 0; i < ship.ShipSize; i++)
+                (int row, int col) userCoordinates = Input.GetValidCoordinates();
+                if (playerBoard.ocean[userCoordinates.row, userCoordinates.col].SquareStatus == Status.ship)
+                {
+                    Display.PrintMessage("There is already a ship there. Choose again.");
+                }
+                else
+                {
+                    string validDirection = ValidateShipDirection(playerBoard, ship, userCoordinates);
+                    Display.PrintMessage(validDirection);
+                    int userOption = Input.ChooseOption(validDirection);
+                    switch (userOption)
                     {
-                        playerBoard.ocean[userCoordinates.row + i, userCoordinates.col].SquareStatus = Status.ship;
+                        case 1:
+                            for (int i = 0; i < ship.ShipSize; i++)
+                            {
+                                playerBoard.ocean[userCoordinates.row + i, userCoordinates.col].SquareStatus = Status.ship;
+                            }
+                            break;
+                
+                        case 2:
+                            for (int i = 0; i < ship.ShipSize; i++)
+                            {
+                                playerBoard.ocean[userCoordinates.row, userCoordinates.col + i].SquareStatus = Status.ship;
+                            }
+                            break; 
+                
+                        case 3:
+                            for (int i = 0; i < ship.ShipSize; i++)
+                            {
+                                playerBoard.ocean[userCoordinates.row - i, userCoordinates.col].SquareStatus = Status.ship;
+                            }
+                            break; 
+                
+                        case 4:
+                            for (int i = 0; i < ship.ShipSize; i++)
+                            {
+                                playerBoard.ocean[userCoordinates.row, userCoordinates.col - i].SquareStatus = Status.ship;
+                            }
+                            break;
                     }
                     break;
+                }
                 
-                case 2:
-                    for (int i = 0; i < ship.ShipSize; i++)
-                    {
-                        playerBoard.ocean[userCoordinates.row, userCoordinates.col + i].SquareStatus = Status.ship;
-                    }
-                    break; 
-                
-                case 3:
-                    for (int i = 0; i < ship.ShipSize; i++)
-                    {
-                        playerBoard.ocean[userCoordinates.row - i, userCoordinates.col].SquareStatus = Status.ship;
-                    }
-                    break; 
-                
-                case 4:
-                    for (int i = 0; i < ship.ShipSize; i++)
-                    {
-                        playerBoard.ocean[userCoordinates.row, userCoordinates.col - i].SquareStatus = Status.ship;
-                    }
-                    break;
             }
             Display.PrintBoard(playerBoard);
 
