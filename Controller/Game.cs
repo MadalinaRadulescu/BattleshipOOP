@@ -16,18 +16,26 @@ namespace Battleship.Controller
 
       public void Play()
       {
-         Display.PrintMessage("Welcome to BATTLESHIP!\nPLease set up your game.\nPlayer 1 please enter your name:\n");
-         player1.name = Input.GetUserName();
-         Display.PrintMessage($"{player1.name} choose how many ships you want to play with (1-5): \n");
+         Display.PrintMessage("Welcome to BATTLESHIP!\nPLease set up your game.\n");
+         Display.PrintMessage("Choose how many ships you want to play with (1-5): \n");
          int numShips = Input.GetValidShipNumber();
-         Display.PrintMessage($"{player1.name} choose the type of ships you want to play ({numShips}):\n 1 - Carrier \n 2 - Cruiser\n 3 - Battleship\n 4 - Submarine\n 5 - Destroyer ");
+         Display.PrintMessage($"Choose the type of ships you want to play ({numShips}):\n 1 - Carrier \n 2 - Cruiser\n 3 - Battleship\n 4 - Submarine\n 5 - Destroyer ");
          int[] shipsSize = Input.GetShipsType(numShips);
-         player1.playerShips = player1.GetPlayerShips(shipsSize);
-         BoardFactory.ManualPlacement(player1.playerBoard, player1.playerShips, player1);
-         
-         
-         
+         SetUpPlayer(shipsSize, player1);
+         SetUpPlayer(shipsSize, player2);
+         Display.PrintParallelBoard(player1.playerGuessBoard, player2.playerGuessBoard, player1.name, player2.name);
+
+
+
+
       }
-      
+
+      private void SetUpPlayer(int[] shipsSize, Player player)
+      {
+         Display.PrintMessage("Please enter your name:\n");
+         player.name = Input.GetUserName();
+         player.playerShips = player.GetPlayerShips(shipsSize);
+         BoardFactory.ManualPlacement(player.playerBoard, player.playerShips, player1);
+      }
    }
 }

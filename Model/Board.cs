@@ -26,7 +26,7 @@ public class Board
     {
         
         StringBuilder sb = new StringBuilder();
-        sb.Append("   1  2  3  4  5  6  7  8  9 10 11 12 13 14 15\n");
+        // sb.Append("   1  2  3  4  5  6  7  8  9 10 11 12 13 14 15\n");
         for (int row = 0; row < 15; row++)
         {
             sb.Append((char)(row + 65));
@@ -39,6 +39,36 @@ public class Board
 
             sb.Append("\n");
         }
+
+        return sb.ToString();
+    }
+    public string ToStringParallel(Board player1Board, Board player2Board)
+    {
+        StringBuilder sb = new StringBuilder();
+        // sb.Append("   1  2  3  4  5  6  7  8  9 10 11 12 13 14 15      |      \n");
+        for (int row = 0; row < 15; row++)
+        {
+            sb.Append((char)(row + 65));
+            sb.Append("  ");
+            for (int col = 0; col < 15; col++)
+            {
+                char character = player1Board.ocean[row, col].GetCharacter(ocean[row, col].SquareStatus);
+                sb.Append($"{character}  ");
+            }
+
+            sb.Append("      |      ");
+            sb.Append((char)(row + 65));
+            sb.Append("  ");
+            for (int col = 0; col < 15; col++)
+            {
+                char character = player2Board.ocean[row, col].GetCharacter(ocean[row, col].SquareStatus);
+                sb.Append($"{character}  ");
+            }
+
+            sb.Append("\n");
+
+        }
+        
 
         return sb.ToString();
     }

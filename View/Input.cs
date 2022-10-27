@@ -91,14 +91,24 @@ public static class Input
         int option;
         while (true)
         {
-            string userOption = Console.ReadLine();
+            string? userOption = Console.ReadLine();
             if (direction.Contains(userOption))
             {
-                option = int.Parse(userOption);
-                break;
+                try
+                {
+                    option = int.Parse(userOption);
+                    break;
+                }
+                catch (FormatException)
+                {
+                    Display.PrintMessage("Not a valid option! Try again..");
+                }
+                
             }
-            
-            Display.PrintMessage("Not a valid option!");
+            else
+            {
+                Display.PrintMessage("Not a valid option! Try again.");
+            }
         }
         return option;
     }
