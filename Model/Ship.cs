@@ -19,7 +19,7 @@ public class Ship
         
         for (int i = 0; i < shipSize; i++)
         {
-            Square shipPart = new Square(Status.ship);
+            Square shipPart = new Square((0,0), Status.ship);
             Ships.Add(shipPart);
         }
         

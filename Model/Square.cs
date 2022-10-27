@@ -16,25 +16,25 @@ public class Square
         SquareStatus = squareStatus;
     }
 
-    public char GetCharacter(Status squareStatus)
+    public string GetCharacter(Status squareStatus)
     {
-        char uniCharacter = ' ';
+        string uniCharacter = " ";
         switch (squareStatus)
         {
             case Status.hit:
-                uniCharacter = 'X';
+                uniCharacter = "🔥";
                 break;
             case Status.ship:
-                uniCharacter =  '#';
+                uniCharacter =  "🚢";
                 break;
             case Status.miss:
-                uniCharacter =  'M';
+                uniCharacter =  "🌊";
                 break;
             case Status.empty:
-                uniCharacter =  '~';
+                uniCharacter =  "~ ";
                 break;
             case Status.sunk:
-                uniCharacter =  '$';
+                uniCharacter =  "⚓️";
                 break;
         }
 

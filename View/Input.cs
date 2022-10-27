@@ -3,9 +3,26 @@ namespace Battleship.View;
 
 public static class Input
 {
+    
     public static string? GetUserName()
     {
         return Console.ReadLine();
+    }
+
+    public static int GetValidPlacementOption()
+    {
+        string userOption;
+        while (true)
+        {
+            userOption = Console.ReadLine();
+            if (userOption == "1" || userOption == "2")
+            {
+                break;
+            }
+            Display.PrintMessage("Not a valid option! Try again.");
+        }
+
+        return int.Parse(userOption);
     }
 
     public static int GetValidShipNumber()
@@ -76,11 +93,23 @@ public static class Input
 
     public static int[] GetShipsType(int shipNumber)
     {
+        int shipNumCounter = 3;
         int[] shipsType = new int[shipNumber];
         for (int i = 0; i < shipNumber; i++)
         {
             int userChoice = GetValidShipNumber();
             shipsType[i] = userChoice;
+            if (shipNumCounter == 0)
+            {
+                Display.PrintMessage(" ");
+            }
+            else
+            {
+                Console.Clear();
+                Display.PrintMessage(
+                    $"\nChoose the type of ships you want to play ({shipNumCounter}):\n 1 - Carrier \n 2 - Cruiser\n 3 - Battleship\n 4 - Submarine\n 5 - Destroyer\n");
+            }
+            shipNumCounter--;
         }
 
         return shipsType;

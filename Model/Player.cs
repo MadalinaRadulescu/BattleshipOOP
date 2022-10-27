@@ -1,5 +1,10 @@
-using System.Data;
+
 using Battleship.View;
+using System.Data;
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
 
 
 namespace Battleship.Model;
@@ -31,7 +36,7 @@ public class Player
         return playerShips;
     }
     
-    public void Shoot(Board playerBoard, Board guessBoard)
+    public void Shoot(Board playerBoard, Board guessBoard, List<Ship> playerShips)
     {
         while (true)
         {
@@ -41,6 +46,23 @@ public class Player
             {
                 playerBoard.ocean[coordinates.x, coordinates.y].SquareStatus = Status.hit;
                 guessBoard.ocean[coordinates.x, coordinates.y].SquareStatus = Status.hit;
+                foreach (var ship in playerShips)
+                {
+                    foreach (var square in ship.Ships)
+                    {
+                        if (square.Coordinates == (coordinates.x, coordinates.y) )
+                        {
+                            square.SquareStatus = Status.hit;
+                            
+                        }
+                        // bool isAllEqual = ship.Distinct().Count() == Status.hit;
+                        // if (isAllEqual)
+                        // {
+                        //     square.SquareStatus = Status.sunk;
+                        // }
+                    }
+                    
+                }
                 break;
             }
             else if (playerBoard.ocean[coordinates.x, coordinates.y].SquareStatus == Status.empty)

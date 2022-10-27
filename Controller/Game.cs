@@ -19,6 +19,7 @@ namespace Battleship.Controller
          bool winCondition1 = player1.IsAlive(player2.playerBoard);
          bool winCondition2 = player2.IsAlive(player1.playerBoard);
          var shipsSize = SetUpGame();
+         Console.Clear();
          SetUpPlayer(shipsSize, player1);
          SetUpPlayer(shipsSize, player2);
          Display.PrintParallelBoard(player1.playerGuessBoard, player2.playerGuessBoard, player1.name, player2.name);
@@ -48,11 +49,11 @@ namespace Battleship.Controller
 
       private static int[] SetUpGame()
       {
-         Display.PrintMessage("Welcome to BATTLESHIP!\nPLease set up your game.\n");
-         Display.PrintMessage("Choose how many ships you want to play with (1-5): \n");
+         Display.PrintMessage("\n\nWelcome to BATTLESHIP!\nPLease set up your game.");
+         Display.PrintMessage("Choose how many ships you want to play with (1-5): ");
          int numShips = Input.GetValidShipNumber();
          Display.PrintMessage(
-            $"Choose the type of ships you want to play ({numShips}):\n 1 - Carrier \n 2 - Cruiser\n 3 - Battleship\n 4 - Submarine\n 5 - Destroyer ");
+            $"\nChoose the type of ships you want to play ({numShips}):\n 1 - Carrier \n 2 - Cruiser\n 3 - Battleship\n 4 - Submarine\n 5 - Destroyer\n ");
          int[] shipsSize = Input.GetShipsType(numShips);
          return shipsSize;
       }
@@ -60,17 +61,30 @@ namespace Battleship.Controller
       private void ShootPlayer(Player player, Player enemyPlayer)
       {
          Display.PrintMessage($"{player.name}'s turn to shoot:");
-         player.Shoot(enemyPlayer.playerBoard, enemyPlayer.playerGuessBoard);
+         player.Shoot(enemyPlayer.playerBoard, enemyPlayer.playerGuessBoard, enemyPlayer.playerShips );
          Console.Clear();
          
       }
 
       private void SetUpPlayer(int[] shipsSize, Player player)
       {
-         Display.PrintMessage("Please enter your name:\n");
+         Display.PrintMessage("Please enter your name:");
          player.name = Input.GetUserName();
          player.playerShips = player.GetPlayerShips(shipsSize);
-         BoardFactory.ManualPlacement(player.playerBoard, player.playerShips, player1);
+         Display.PrintMessage("\nHow do you want to place your ships:\n1-Manual\n2-Random\n");
+         int shipPlacementOption = Input.GetValidPlacementOption();
+         Console.Clear();
+         switch (shipPlacementOption)
+         {
+            case 1:
+               BoardFactory.ManualPlacement(player.playerBoard, player.playerShips, player1);
+               break;
+            case 2:
+               BoardFactory.RandomPlacement(player.playerBoard, player.playerShips);
+               break;
+         }
+         // Console.Clear();
+         
       }
    }
 }
