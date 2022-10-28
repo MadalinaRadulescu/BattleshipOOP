@@ -55,11 +55,7 @@ public class Player
                             square.SquareStatus = Status.hit;
                             
                         }
-                        // bool isAllEqual = ship.Distinct().Count() == Status.hit;
-                        // if (isAllEqual)
-                        // {
-                        //     square.SquareStatus = Status.sunk;
-                        // }
+                        
                     }
                     
                 }

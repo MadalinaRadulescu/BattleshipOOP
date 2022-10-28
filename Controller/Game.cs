@@ -52,8 +52,6 @@ namespace Battleship.Controller
          Display.PrintMessage("\n\nWelcome to BATTLESHIP!\nPLease set up your game.");
          Display.PrintMessage("Choose how many ships you want to play with (1-5): ");
          int numShips = Input.GetValidShipNumber();
-         Display.PrintMessage(
-            $"\nChoose the type of ships you want to play ({numShips}):\n 1 - Carrier \n 2 - Cruiser\n 3 - Battleship\n 4 - Submarine\n 5 - Destroyer\n ");
          int[] shipsSize = Input.GetShipsType(numShips);
          return shipsSize;
       }
@@ -77,10 +75,10 @@ namespace Battleship.Controller
          switch (shipPlacementOption)
          {
             case 1:
-               BoardFactory.ManualPlacement(player.playerBoard, player.playerShips, player1);
+               BoardFactory.ManualPlacement(player.playerBoard, player.playerShips, player);
                break;
             case 2:
-               BoardFactory.RandomPlacement(player.playerBoard, player.playerShips);
+               BoardFactory.RandomPlacement(player.playerBoard, player.playerShips, player);
                break;
          }
          // Console.Clear();

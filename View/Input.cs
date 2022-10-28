@@ -93,7 +93,10 @@ public static class Input
 
     public static int[] GetShipsType(int shipNumber)
     {
-        int shipNumCounter = 3;
+        int shipNumCounter = shipNumber;
+        Display.PrintMessage(
+            $"\nChoose the type of ships you want to play ({shipNumCounter}):\n 1 - Carrier \n 2 - Cruiser\n 3 - Battleship\n 4 - Submarine\n 5 - Destroyer\n ");
+        shipNumCounter--;
         int[] shipsType = new int[shipNumber];
         for (int i = 0; i < shipNumber; i++)
         {

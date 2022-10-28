@@ -6,7 +6,7 @@ namespace Battleship.Model;
 
 public static class BoardFactory
 {
-    public static void RandomPlacement(Board playerBoard, List<Ship> playerShips)
+    public static void RandomPlacement(Board playerBoard, List<Ship> playerShips, Player player)
     {
         var random = new Random();
         
@@ -66,6 +66,7 @@ public static class BoardFactory
                 }
             }
         }
+        Display.PrintMessage($"                {player.name}, place your ships!");
         Display.PrintBoard(playerBoard);
     }
 

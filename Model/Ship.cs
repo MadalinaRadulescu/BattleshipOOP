@@ -6,6 +6,7 @@ public class Ship
     private Type ShipType { get; set; }
     public int ShipSize; 
     
+    
     public Ship(int shipSize)
     {
         ShipSize = shipSize;
@@ -25,6 +26,8 @@ public class Ship
         
         return Ships;
     }
+    
+    
 }
 
 public enum Type
