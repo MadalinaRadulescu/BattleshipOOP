@@ -18,11 +18,11 @@ This Battleship game is implemented in C# and is a great way to improve your pro
 
 # Screenshots
 
-**Setup Game(choosing number of ships, lenght)**
+**Setup Game(choosing number of ships, length)**
 
 <img width="422" alt="Screenshot 2023-05-05 at 11 31 01" src="https://user-images.githubusercontent.com/101947079/236416097-a480a9e5-272a-4e85-8553-13c9623dd366.png">
 
-**Palacing ships on board(random or manual)**
+**Placing ships on board(random or manual)**
 
 <img width="541" alt="Screenshot 2023-05-05 at 11 30 13" src="https://user-images.githubusercontent.com/101947079/236416308-d37d7e95-4f86-4ff6-89d3-231dc2c5770c.png">
 
